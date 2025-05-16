@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastreador de Peso Diário</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js para o gráfico -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cabeçalho com imagem de fundo -->
+    <header class="header">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Rastreador de Peso Diário</h1>
+            <p>Acompanhe sua evolução e alcance seus objetivos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Seção para adicionar novo registro de peso -->
+        <section class="card">
+            <div class="card-header">
+                <i class="fas fa-weight"></i>
+                <h2>Registrar Novo Peso</h2>
+            </div>
+            <div class="card-body">
+                <form id="peso-form">
+                    <div class="form-group">
+                        <label for="data">
+                            <i class="fas fa-calendar"></i> Data:
+                        </label>
+                        <input type="date" id="data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="peso">
+                            <i class="fas fa-balance-scale"></i> Peso (kg):
+                        </label>
+                        <input type="number" id="peso" step="0.1" min="0" placeholder="Ex: 75.5" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Seção para exibir o gráfico de evolução -->
+        <section class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i>
+                <h2>Evolução do Peso</h2>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="peso-chart"></canvas>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Peso Inicial</span>
+                        <span class="stat-value" id="peso-inicial">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Peso Atual</span>
+                        <span class="stat-value" id="peso-atual">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Diferença</span>
+                        <span class="stat-value" id="peso-diferenca">--</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção para exibir o histórico de registros -->
+        <section class="card">
+            <div class="card-header">
+                <i class="fas fa-history"></i>
+                <h2>Histórico de Registros</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="historico-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Peso (kg)</th>
+                                <th>Variação</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historico-body">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="sem-registros" class="hidden">
+                    <p>Nenhum registro encontrado. Adicione seu primeiro registro de peso!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de motivação com imagens -->
+        <section class="card">
+            <div class="card-header">
+                <i class="fas fa-fire"></i>
+                <h2>Motivação</h2>
+            </div>
+            <div class="card-body">
+                <div class="quote">
+                    <blockquote id="quote-text">
+                        "O sucesso não é dado. É conquistado. Na pista, no campo, na academia. Com sangue, suor e o trabalho ocasional de uma lágrima."
+                    </blockquote>
+                </div>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Fitness motivação">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Fitness motivação">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Fitness motivação">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Rastreador de Peso Diário. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Toast para notificações -->
+    <div id="toast" class="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="toast-message">Registro salvo com sucesso!</div>
+        <div class="toast-progress"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
